@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const userRouter = require('./routes/user');
 const recipeRouter = require('./routes/recipe');
+const grainRouter = require('./routes/grain');
 const logger = require('./middleware/logger');
 const app = express();
 const port = process.env.PORT;
@@ -14,7 +15,7 @@ app.use(cors());
 app.options('*', cors());
 app.use(logger);
 
-app.use('/', [userRouter, recipeRouter]);
+app.use('/', [userRouter, recipeRouter, grainRouter]);
 
 app.listen(port, () => {
   console.log(`Server is runnning on port: ${port}`);

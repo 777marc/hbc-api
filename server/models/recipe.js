@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const { GrainSchema } = require('./grain');
 
-const Recipe = mongoose.model('Recipe', {
+const RecipeSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -11,7 +12,10 @@ const Recipe = mongoose.model('Recipe', {
     type: String,
     minLength: 1,
     trim: true
-  }
+  },
+  grains: [GrainSchema]
 });
+
+const Recipe = mongoose.model('Recipe', RecipeSchema);
 
 module.exports = { Recipe };
