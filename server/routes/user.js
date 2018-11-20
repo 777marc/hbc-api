@@ -5,8 +5,9 @@ const _ = require('lodash');
 const { ObjectID } = require('mongodb');
 const { SHA256 } = require('crypto-js');
 const userController = require('../controllers/userController');
+const auth = require('../middleware/auth');
 
-router.get('/user', function(req, res, next) {
+router.get('/user', auth, function(req, res, next) {
   userController.getAll().then((users) => {
     res.send({users});
   }, (err) => {
